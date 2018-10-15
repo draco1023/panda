@@ -1,0 +1,15 @@
+server:
+  port: 8761
+spring:
+  application:
+    name: panda-server
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    # 是否将自己注册到eureka上去
+    register-with-eureka: false
+    # 是否从eureka上拉取已注册服务列表
+    fetch-registry: false
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
