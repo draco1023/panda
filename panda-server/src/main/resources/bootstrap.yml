@@ -8,7 +8,7 @@ eureka:
     hostname: localhost
   client:
     # 是否将自己注册到eureka上去
-    register-with-eureka: false
+    register-with-eureka: true
     # 是否从eureka上拉取已注册服务列表
     fetch-registry: false
     service-url:

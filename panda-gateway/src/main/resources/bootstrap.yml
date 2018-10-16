@@ -1,0 +1,21 @@
+server:
+  port: 2004
+spring:
+  application:
+    name: api-gateway-dynamic
+  profiles:
+    active: dev
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: panda-config-server
+      fail-fast: false
+      name: ${spring.application.name}
+      label: ${spring.profiles.active}
+      profile: ${spring.profiles.active}
+ignore:
+  urls:
+  - /**/*.css
+  - /auth/**
+  - /refresh/**
