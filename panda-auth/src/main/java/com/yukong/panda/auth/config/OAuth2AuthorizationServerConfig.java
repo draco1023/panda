@@ -4,6 +4,8 @@ package com.yukong.panda.auth.config;
 import com.yukong.panda.auth.handler.CustomWebResponseExceptionTranslator;
 import com.yukong.panda.auth.security.UserDetailsImpl;
 import com.yukong.panda.common.constants.SecurityConstants;
+import com.yukong.panda.common.constants.UserConstants;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -33,6 +35,7 @@ import java.util.Map;
  * @date: 2018/10/8 17:27
  * @description: oauth2认证服务器配置类
  */
+@Slf4j
 @Configuration
 @EnableAuthorizationServer
 public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
@@ -120,9 +123,10 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
                 final Map<String, Object> additionMessage = new HashMap<>(2);
                 // 获取当前登录的用户
                 UserDetailsImpl user = (UserDetailsImpl) oAuth2Authentication.getUserAuthentication().getPrincipal();
+                log.info("当前用户为：{}", user);
                 // 如果用户不为空 则把id放入jwt token中
                 if (user != null) {
-                    additionMessage.put("userId", user.getUserId());
+                    additionMessage.put(UserConstants.USER_ID, user.getUserId());
                 }
                 ((DefaultOAuth2AccessToken)oAuth2AccessToken).setAdditionalInformation(additionMessage);
                 return oAuth2AccessToken;

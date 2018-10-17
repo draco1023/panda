@@ -2,10 +2,20 @@ package com.yukong.panda.user.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.google.common.base.Strings;
+import com.yukong.panda.common.vo.SysUserVo;
+import com.yukong.panda.user.dto.SysUserInfoDTO;
+import com.yukong.panda.user.entity.SysResource;
 import com.yukong.panda.user.entity.SysUser;
 import com.yukong.panda.user.mapper.SysUserMapper;
+import com.yukong.panda.user.service.SysResourceService;
 import com.yukong.panda.user.service.SysUserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -18,10 +28,33 @@ import org.springframework.stereotype.Service;
 @Service
 public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> implements SysUserService {
 
+    @Autowired
+    private SysUserMapper sysUserMapper;
+
+    @Autowired
+    private SysResourceService sysResourceService;
+
     @Override
-    public SysUser loadUserByUsername(String username) {
-        QueryWrapper<SysUser> queryWrapper = new QueryWrapper<>();
-        queryWrapper.lambda().eq(SysUser::getUsername, username);
-        return baseMapper.selectOne(queryWrapper);
+    public SysUserVo loadUserByUsername(String username) {
+        return sysUserMapper.loadUserByUsername(username);
+    }
+
+    @Override
+    public SysUserInfoDTO getUserInfo(Integer userId, List<String> roles) {
+        SysUserInfoDTO sysUserInfoDTO = new SysUserInfoDTO();
+        SysUser sysUser = sysUserMapper.selectById(userId);
+        sysUserInfoDTO.setSysUser(sysUser);
+        sysUserInfoDTO.setRoles(roles);
+        Set<SysResource> sysResources = sysResourceService.getSysResourceRoleCodes(roles);
+
+        List<String> permissions = sysResources.stream()
+                .map(SysResource::getPermission)
+                .collect(Collectors.toList())
+                .stream()
+                .filter(permission ->
+                     Strings.isNullOrEmpty(permission)
+                ).collect(Collectors.toList());
+        sysUserInfoDTO.setPermissions(permissions);
+        return sysUserInfoDTO;
     }
 }

@@ -2,7 +2,11 @@ package com.yukong.panda.user.service;
 
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.yukong.panda.common.vo.SysUserVo;
+import com.yukong.panda.user.dto.SysUserInfoDTO;
 import com.yukong.panda.user.entity.SysUser;
+
+import java.util.List;
 
 /**
  * <p>
@@ -19,6 +23,13 @@ public interface SysUserService extends IService<SysUser> {
      * @param username
      * @return
      */
-    SysUser loadUserByUsername(String username);
+    SysUserVo loadUserByUsername(String username);
 
+    /**
+     * 根据userid 与角色信息返回用户详细信息
+     * @param userId
+     * @param roles
+     * @return
+     */
+    SysUserInfoDTO getUserInfo(Integer userId, List<String> roles);
 }

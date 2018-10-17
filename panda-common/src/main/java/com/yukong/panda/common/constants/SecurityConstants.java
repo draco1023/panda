@@ -7,6 +7,10 @@ package com.yukong.panda.common.constants;
  */
 public interface SecurityConstants {
 
+    /**
+     * token的header key
+     */
+   String TOKEN_HEADER = "Authorization";
 
    String CLOUD_PREFIX = "cloud_";
 

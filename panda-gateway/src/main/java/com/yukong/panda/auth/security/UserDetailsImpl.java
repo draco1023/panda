@@ -1,4 +1,4 @@
-package com.yukong.panda.gateway.auth.security;
+package com.yukong.panda.auth.security;
 
 import com.yukong.panda.common.entity.SysUser;
 import com.yukong.panda.common.enums.UserStatusEnum;

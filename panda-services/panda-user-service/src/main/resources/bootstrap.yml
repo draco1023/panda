@@ -56,4 +56,4 @@ mybatis-plus:
 # Logger Config
 logging:
   level:
-    com.yukong.mapper: debug
+    com.yukong.panda.user.mapper: debug

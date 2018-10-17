@@ -16,7 +16,13 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-
+    <properties>
+        <spring-cloud.version>Finchley.SR1</spring-cloud.version>
+        <guava-version>20.0</guava-version>
+        <jjwt-version>0.9.0</jjwt-version>
+        <mybatis-plus-starter.version>3.0.1</mybatis-plus-starter.version>
+        <mysql-connector.version>5.1.46</mysql-connector.version>
+    </properties>
     <modules>
         <module>panda-services</module>
         <module>panda-auth</module>

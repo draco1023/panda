@@ -2,6 +2,8 @@ package com.yukong.panda.auth.security;
 
 import com.yukong.panda.common.entity.SysUser;
 import com.yukong.panda.common.enums.UserStatusEnum;
+import com.yukong.panda.common.vo.SysRoleVo;
+import com.yukong.panda.common.vo.SysUserVo;
 import lombok.Data;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.security.core.GrantedAuthority;
@@ -20,26 +22,32 @@ import java.util.List;
 @Data
 public class UserDetailsImpl implements UserDetails {
 
+    private static final long serialVersionUID = -2636609458742965698L;
+
     private Integer userId;
     private String username;
     private String password;
     private String status;
+    private List<SysRoleVo> roleVos;
 
 
 
 
-
-    public UserDetailsImpl(SysUser userVo) {
+    public UserDetailsImpl(SysUserVo userVo) {
         this.userId = userVo.getUserId();
         this.username = userVo.getUsername();
         this.password = userVo.getPassword();
         this.status = userVo.getDelFlag();
+        this.roleVos = userVo.getSysRoleVoList();
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> authorityList = new ArrayList<>();
-        authorityList.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+        roleVos.forEach(role ->{
+            authorityList.add(new SimpleGrantedAuthority(role.getRoleCode()));
+        });
+        authorityList.add(new SimpleGrantedAuthority("ROLE_USER"));
         return authorityList;
     }
 
