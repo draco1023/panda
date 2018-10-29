@@ -3,11 +3,10 @@ package com.yukong.panda.user.controller;
 import com.yukong.panda.common.util.ApiResult;
 import com.yukong.panda.common.util.UserUtil;
 import com.yukong.panda.user.dto.SysResourceTree;
+import com.yukong.panda.user.entity.SysResource;
 import com.yukong.panda.user.service.SysResourceService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -44,6 +43,11 @@ public class SysResourceController {
     @GetMapping("/tree")
     public ApiResult<List<SysResourceTree>> getAllResourceTree(){
         return new ApiResult<>(sysResourceService.getAllResourceTree());
+    }
+
+    @PostMapping
+    public ApiResult saveMenu(@RequestBody SysResource sysResource) {
+        return new ApiResult(sysResourceService.save(sysResource));
     }
 
 }

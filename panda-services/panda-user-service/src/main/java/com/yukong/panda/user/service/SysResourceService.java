@@ -1,5 +1,6 @@
 package com.yukong.panda.user.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.yukong.panda.user.dto.SysResourceTree;
 import com.yukong.panda.user.entity.SysResource;
 import com.yukong.panda.user.mapper.SysResourceMapper;
@@ -14,7 +15,7 @@ import java.util.Set;
  * @date: 2018/10/17 13:58
  * @description: 系统资源服务类
  */
-public interface SysResourceService {
+public interface SysResourceService extends IService<SysResource> {
 
 
 
@@ -37,5 +38,6 @@ public interface SysResourceService {
      * @return
      */
     List<SysResourceTree> getAllResourceTree();
+
 
 }
