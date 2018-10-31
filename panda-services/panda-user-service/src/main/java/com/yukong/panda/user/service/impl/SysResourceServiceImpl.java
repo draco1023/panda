@@ -2,6 +2,8 @@ package com.yukong.panda.user.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yukong.panda.common.constants.CommonConstants;
 import com.yukong.panda.common.enums.DataStatusEnum;
@@ -14,8 +16,11 @@ import com.yukong.panda.user.mapper.SysUserMapper;
 import com.yukong.panda.user.service.SysResourceService;
 import com.yukong.panda.user.util.TreeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.convert.EntityWriter;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.xml.crypto.Data;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -58,5 +63,21 @@ public class SysResourceServiceImpl  extends ServiceImpl<SysResourceMapper, SysR
         query.lambda().eq(SysResource::getDelFlag, DataStatusEnum.NORMAL.getCode());
         List<SysResource> sysResources = sysResourceMapper.selectList(query);
         return TreeUtil.list2Tree(sysResources, CommonConstants.TREE_ROOT);
+    }
+
+    @Transactional
+    @Override
+    public Boolean deleteResource(Integer id) {
+        // 伪删除
+        SysResource sysResource = super.getById(id);
+        sysResource.setDelFlag(DataStatusEnum.LOCK.getCode());
+        super.updateById(sysResource);
+
+        SysResource resource = new SysResource();
+        resource.setDelFlag(DataStatusEnum.LOCK.getCode());
+        UpdateWrapper<SysResource> wrapper = new UpdateWrapper<>();
+        wrapper.lambda().eq(SysResource::getParentId, sysResource.getId());
+        super.update(resource, wrapper);
+        return true;
     }
 }

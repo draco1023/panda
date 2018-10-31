@@ -60,4 +60,10 @@ public class SysResourceController {
         return new ApiResult<>(sysResourceService.getById(id));
     }
 
+    
+    @DeleteMapping("/id/{id}")
+    public ApiResult<Boolean> deleteResource(@PathVariable("id") Integer id) {
+        return new ApiResult<>(sysResourceService.deleteResource(id));
+    }
+
 }

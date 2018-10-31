@@ -39,5 +39,11 @@ public interface SysResourceService extends IService<SysResource> {
      */
     List<SysResourceTree> getAllResourceTree();
 
+    /**
+     * 删除资源以及子资源
+     * @param id
+     * @return
+     */
+    Boolean deleteResource(Integer id);
 
 }
