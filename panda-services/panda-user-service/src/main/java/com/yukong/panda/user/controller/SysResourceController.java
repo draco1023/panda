@@ -50,4 +50,14 @@ public class SysResourceController {
         return new ApiResult(sysResourceService.save(sysResource));
     }
 
+    @PutMapping
+    public ApiResult updateMenu(@RequestBody SysResource sysResource) {
+        return new ApiResult(sysResourceService.updateById((sysResource)));
+    }
+
+    @GetMapping("/id/{id}")
+    public ApiResult<SysResource> getById(@PathVariable("id") Integer id){
+        return new ApiResult<>(sysResourceService.getById(id));
+    }
+
 }
