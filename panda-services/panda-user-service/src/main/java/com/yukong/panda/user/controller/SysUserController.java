@@ -3,7 +3,7 @@ package com.yukong.panda.user.controller;
 import com.yukong.panda.common.util.ApiResult;
 import com.yukong.panda.common.util.UserUtil;
 import com.yukong.panda.common.vo.SysUserVo;
-import com.yukong.panda.user.dto.SysUserInfoDTO;
+import com.yukong.panda.user.model.dto.SysUserInfoDTO;
 import com.yukong.panda.user.service.SysUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;

@@ -3,8 +3,8 @@ package com.yukong.panda.user.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.yukong.panda.common.vo.SysUserVo;
-import com.yukong.panda.user.dto.SysUserInfoDTO;
-import com.yukong.panda.user.entity.SysUser;
+import com.yukong.panda.user.model.dto.SysUserInfoDTO;
+import com.yukong.panda.user.model.entity.SysUser;
 
 import java.util.List;
 

@@ -1,30 +1,27 @@
-package com.yukong.panda.user.entity;
+package com.yukong.panda.user.model.dto;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
-import lombok.experimental.Accessors;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
- * <p>
- * 资源表(菜单与按钮)
- * </p>
- *
- * @author yukong
- * @since 2018-10-16
+ * @author: yukong
+ * @date: 2018/10/17 13:35
+ * @description: 资源树
  */
 @Data
-@Accessors(chain = true)
-public class SysResource{
+public class SysResourceTree {
 
-    private static final long serialVersionUID = 1L;
+    /**
+     * 子节点
+     */
+    private List<SysResourceTree> children;
+
 
     /**
      * 主键
      */
-    @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
     /**
@@ -87,5 +84,8 @@ public class SysResource{
      */
     private String delFlag;
 
+    public void addChildren(SysResourceTree tree) {
+        this.children.add(tree);
+    }
 
 }

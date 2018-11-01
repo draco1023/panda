@@ -1,7 +1,7 @@
 package com.yukong.panda.user.util;
 
-import com.yukong.panda.user.dto.SysResourceTree;
-import com.yukong.panda.user.entity.SysResource;
+import com.yukong.panda.user.model.dto.SysResourceTree;
+import com.yukong.panda.user.model.entity.SysResource;
 import org.springframework.beans.BeanUtils;
 
 import java.util.ArrayList;

@@ -1,11 +1,8 @@
 package com.yukong.panda.user.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.yukong.panda.user.dto.SysResourceTree;
-import com.yukong.panda.user.entity.SysResource;
-import com.yukong.panda.user.mapper.SysResourceMapper;
-import com.yukong.panda.user.mapper.SysRoleMapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.yukong.panda.user.model.dto.SysResourceTree;
+import com.yukong.panda.user.model.entity.SysResource;
 
 import java.util.List;
 import java.util.Set;

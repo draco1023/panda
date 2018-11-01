@@ -1,12 +1,11 @@
 package com.yukong.panda.user.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.google.common.base.Strings;
 import com.yukong.panda.common.vo.SysUserVo;
-import com.yukong.panda.user.dto.SysUserInfoDTO;
-import com.yukong.panda.user.entity.SysResource;
-import com.yukong.panda.user.entity.SysUser;
+import com.yukong.panda.user.model.dto.SysUserInfoDTO;
+import com.yukong.panda.user.model.entity.SysResource;
+import com.yukong.panda.user.model.entity.SysUser;
 import com.yukong.panda.user.mapper.SysUserMapper;
 import com.yukong.panda.user.service.SysResourceService;
 import com.yukong.panda.user.service.SysUserService;

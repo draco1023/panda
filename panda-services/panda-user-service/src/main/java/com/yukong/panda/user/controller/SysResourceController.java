@@ -2,8 +2,8 @@ package com.yukong.panda.user.controller;
 
 import com.yukong.panda.common.util.ApiResult;
 import com.yukong.panda.common.util.UserUtil;
-import com.yukong.panda.user.dto.SysResourceTree;
-import com.yukong.panda.user.entity.SysResource;
+import com.yukong.panda.user.model.dto.SysResourceTree;
+import com.yukong.panda.user.model.entity.SysResource;
 import com.yukong.panda.user.service.SysResourceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

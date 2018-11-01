@@ -2,7 +2,7 @@ package com.yukong.panda.user.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.yukong.panda.common.vo.SysUserVo;
-import com.yukong.panda.user.entity.SysUser;
+import com.yukong.panda.user.model.entity.SysUser;
 
 /**
  * <p>

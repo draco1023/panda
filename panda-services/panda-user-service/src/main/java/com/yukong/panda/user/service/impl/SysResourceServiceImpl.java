@@ -1,26 +1,20 @@
 package com.yukong.panda.user.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yukong.panda.common.constants.CommonConstants;
 import com.yukong.panda.common.enums.DataStatusEnum;
 import com.yukong.panda.common.enums.ResourceTypeEnum;
-import com.yukong.panda.user.dto.SysResourceTree;
-import com.yukong.panda.user.entity.SysResource;
-import com.yukong.panda.user.entity.SysUser;
+import com.yukong.panda.user.model.dto.SysResourceTree;
+import com.yukong.panda.user.model.entity.SysResource;
 import com.yukong.panda.user.mapper.SysResourceMapper;
-import com.yukong.panda.user.mapper.SysUserMapper;
 import com.yukong.panda.user.service.SysResourceService;
 import com.yukong.panda.user.util.TreeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.convert.EntityWriter;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.xml.crypto.Data;
 import java.util.*;
 import java.util.stream.Collectors;
 

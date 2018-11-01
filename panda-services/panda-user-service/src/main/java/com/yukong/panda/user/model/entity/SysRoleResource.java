@@ -1,11 +1,11 @@
-package com.yukong.panda.user.entity;
+package com.yukong.panda.user.model.entity;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 用户角色关联表
+ * 角色资源关联表
  * </p>
  *
  * @author yukong
@@ -13,19 +13,19 @@ import lombok.experimental.Accessors;
  */
 @Data
 @Accessors(chain = true)
-public class SysUserRole{
+public class SysRoleResource{
 
     private static final long serialVersionUID = 1L;
 
     /**
      * 主键
      */
-    private Integer userId;
+    private Integer roleId;
 
     /**
      * 主键
      */
-    private Integer roleId;
+    private Integer resourceId;
 
 
 }

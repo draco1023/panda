@@ -1,30 +1,21 @@
-package com.yukong.panda.user.entity;
+package com.yukong.panda.user.model.dto;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
-import lombok.experimental.Accessors;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
- * <p>
- * 角色表
- * </p>
- *
- * @author yukong
- * @since 2018-10-16
+ * @author: yukong
+ * @date: 2018/11/1 15:37
  */
 @Data
-@Accessors(chain = true)
-public class SysRole{
+public class SysRoleDTO {
 
-    private static final long serialVersionUID = 1L;
 
     /**
      * 主键
      */
-    @TableId(value = "role_id", type = IdType.AUTO)
     private Integer roleId;
 
     /**
@@ -52,5 +43,9 @@ public class SysRole{
      */
     private String delFlag;
 
+    /**
+     * 绑定的资源id集合
+     */
+    private List<Integer> sysResourceIds;
 
 }

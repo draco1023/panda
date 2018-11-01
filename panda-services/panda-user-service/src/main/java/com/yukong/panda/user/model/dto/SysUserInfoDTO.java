@@ -1,9 +1,8 @@
-package com.yukong.panda.user.dto;
+package com.yukong.panda.user.model.dto;
 
-import com.yukong.panda.user.entity.SysUser;
+import com.yukong.panda.user.model.entity.SysUser;
 import lombok.Data;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
