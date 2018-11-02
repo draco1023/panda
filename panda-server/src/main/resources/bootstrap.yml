@@ -6,6 +6,7 @@ spring:
 eureka:
   instance:
     hostname: localhost
+    preferIpAddress: true
   client:
     # 是否将自己注册到eureka上去
     register-with-eureka: true

@@ -6,10 +6,10 @@
 
         select * from sys_role
         <where>
-            <if test="roleName">
+            <if test="roleName != '' and roleName != null">
                 role_name like concat('%',#{roleName},'%')
             </if>
-            <if test="roleCode">
+            <if test="roleCode != '' and roleCode != null">
                 role_code = #{roleCode}
             </if>
         </where>
