@@ -1,4 +1,5 @@
 ## 介绍
+- panda-server 服务注册中心
 - panda-auth  oauth2 认证服务器 提供token
 - panda-common 公共模块集合
 - panda-config-server 配置中心服务器
