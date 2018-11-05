@@ -4,14 +4,14 @@ import com.yukong.panda.common.util.ApiResult;
 import com.yukong.panda.common.util.UserUtil;
 import com.yukong.panda.common.vo.SysUserVo;
 import com.yukong.panda.user.model.dto.SysUserInfoDTO;
+import com.yukong.panda.user.model.entity.SysUser;
+import com.yukong.panda.user.model.query.SysRoleQuery;
+import com.yukong.panda.user.model.query.SysUserVoQuery;
 import com.yukong.panda.user.service.SysUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -47,5 +47,27 @@ public class SysUserController {
     public ApiResult<List<String>> getRoles(){
         return new ApiResult<>(UserUtil.getRoles(request));
     }
+
+    @GetMapping("/page")
+    public ApiResult<SysUserVoQuery> pageByQuery(SysUserVoQuery query){
+        return new ApiResult<>(sysUserService.pageUserVoByQuery(query));
+    }
+
+    @PostMapping
+    public ApiResult<Boolean> save(@RequestBody SysUserVo sysUserVo){
+        return new ApiResult<>(sysUserService.save(sysUserVo));
+    }
+
+    @PutMapping
+    public ApiResult<Boolean> update(@RequestBody SysUserVo sysUserVo){
+        return new ApiResult<>(sysUserService.update(sysUserVo));
+    }
+
+    @DeleteMapping("/id/{id}")
+    public ApiResult<Boolean> delete(@PathVariable("id") Integer id){
+        return new ApiResult<>(sysUserService.delete(id));
+    }
+
+
 
 }

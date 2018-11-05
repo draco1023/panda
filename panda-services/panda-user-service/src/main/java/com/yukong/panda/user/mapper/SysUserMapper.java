@@ -1,8 +1,11 @@
 package com.yukong.panda.user.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.yukong.panda.common.vo.SysUserVo;
 import com.yukong.panda.user.model.entity.SysUser;
+import com.yukong.panda.user.model.query.SysUserVoQuery;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * <p>
@@ -20,5 +23,19 @@ public interface SysUserMapper extends BaseMapper<SysUser> {
      * @return
      */
     SysUserVo loadUserByUsername(String username);
+
+    /**
+     * 用户信息分页查询
+     * @param query
+     * @return
+     */
+    IPage<SysUserVo> pageUserVoByQuery(SysUserVoQuery query);
+
+    /**
+     * 统计
+     * @param username
+     * @return
+     */
+    Integer countUserByQuery(@Param("username") String username);
 
 }

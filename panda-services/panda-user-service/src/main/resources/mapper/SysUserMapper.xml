@@ -47,6 +47,39 @@
             <result column="rdel_flag" property="delFlag"/>
         </collection>
     </resultMap>
+    <select id="pageUserVoByQuery" resultMap="userVOResultMap" parameterType="com.yukong.panda.user.model.query.SysUserVoQuery">
+        select
+             u.user_id,
+             u.username,
+             u.password,
+             u.email,
+             u.mobile,
+             u.qq,
+             u.wechat,
+             u.weibo,
+             u.avatar,
+             u.qq_openid,
+             u.wechat_openid,
+             u.weibo_openid,
+             u.create_time,
+             u.modify_time,
+             u.del_flag,
+             sr.role_id,
+             sr.role_name,
+             sr.role_code,
+             sr.create_time as rcreate_time,
+             sr.modify_time as rmodify_time,
+             sr.del_flag as rdel_flag
+         from
+             sys_user as u
+             left join sys_user_role as sur on sur.user_id = u.user_id
+             left join sys_role as sr on sr.role_id = sur.role_id
+         <where>
+             <if test="username != null and username != ''">
+                 u.username = #{username}
+             </if>
+         </where>
+    </select>
 
 
     <select id="loadUserByUsername" resultMap="userVOResultMap">
@@ -77,5 +110,16 @@
              left join sys_user_role as sur on sur.user_id = u.user_id
              left join sys_role as sr on sr.role_id = sur.role_id
           where u.username = #{username}
+    </select>
+    <select id="countUserByQuery" resultType="java.lang.Integer">
+        select
+          count(1)
+        from
+          sys_user u
+        <where>
+            <if test="username != null and username != ''">
+                u.username = #{username}
+            </if>
+        </where>
     </select>
 </mapper>

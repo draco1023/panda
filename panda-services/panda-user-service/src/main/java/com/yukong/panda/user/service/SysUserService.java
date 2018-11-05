@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.yukong.panda.common.vo.SysUserVo;
 import com.yukong.panda.user.model.dto.SysUserInfoDTO;
 import com.yukong.panda.user.model.entity.SysUser;
+import com.yukong.panda.user.model.query.SysUserVoQuery;
 
 import java.util.List;
 
@@ -32,4 +33,32 @@ public interface SysUserService extends IService<SysUser> {
      * @return
      */
     SysUserInfoDTO getUserInfo(Integer userId, List<String> roles);
+
+    /**
+     * 用户信息分页查询
+     * @param query
+     * @return
+     */
+    SysUserVoQuery pageUserVoByQuery(SysUserVoQuery query);
+
+    /**
+     * 添加用户信息（带角色）
+     * @param sysUserVo
+     * @return
+     */
+    Boolean save(SysUserVo sysUserVo);
+
+    /**
+     * 更新用户信息（带角色）
+     * @param sysUserVo
+     * @return
+     */
+    Boolean update(SysUserVo sysUserVo);
+
+    /**
+     * 删除用户信息
+     * @param userId
+     * @return
+     */
+    Boolean delete(Integer userId);
 }
