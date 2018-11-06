@@ -49,7 +49,7 @@
 
  ## 启动教程
 
- - 根据`init.sql` 创建数据
+ - 根据`init.sql` 创建数据库
  - 首先启动 `panda-server` 注册中心
  - 然后启动`panda-config-server`配置注册中心
  - 启动统一用户服务`panda-user-service`
