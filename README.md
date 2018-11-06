@@ -9,13 +9,15 @@
     
 
 后续会陆续支持 zipkin服务链路监控  springboot-admin 服务健康监控等
-## 进度![resource-1](/Users/yukong/Documents/ideaProjects/panda/imgs/resource-1.png)
+## 进度
 
-![resource-2](/Users/yukong/Documents/ideaProjects/panda/imgs/resource-2.png)
+![resource-1](https://github.com/YuKongEr/panda/blob/master/imgs/resource-1.png)
 
-![role](/Users/yukong/Documents/ideaProjects/panda/imgs/role.png)
+![resource-2](https://github.com/YuKongEr/panda/blob/master/imgs/resource-2.png)
 
-![user](/Users/yukong/Documents/ideaProjects/panda/imgs/user.png)
+![role](https://github.com/YuKongEr/panda/blob/master/imgs/role.png)
+
+
 
 - [x] 登录管理
   - [x] 登录
