@@ -17,9 +17,9 @@ public class CustomWebResponseExceptionTranslator implements WebResponseExceptio
     @Override
     public ResponseEntity<OAuth2Exception> translate(Exception e) throws Exception {
 
-        oauth2exception oauth2exception = (oauth2exception) e;
-        return responseentity
-                .status(oauth2exception.gethttperrorcode())
-                .body(new customoauth2exception(oauth2exception.getmessage()));
+        OAuth2Exception oAuth2Exception = (OAuth2Exception) e;
+        return ResponseEntity
+                .status(oAuth2Exception.getHttpErrorCode())
+                .body(new CustomOauth2Exception(oAuth2Exception.getMessage()));
     }
 }
