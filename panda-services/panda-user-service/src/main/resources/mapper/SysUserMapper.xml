@@ -76,7 +76,7 @@
              left join sys_role as sr on sr.role_id = sur.role_id
          <where>
              <if test="username != null and username != ''">
-                 u.username = #{username}
+                 u.username like concat('%', #{username}, '%')
              </if>
          </where>
     </select>
@@ -110,6 +110,7 @@
              left join sys_user_role as sur on sur.user_id = u.user_id
              left join sys_role as sr on sr.role_id = sur.role_id
           where u.username = #{username}
+
     </select>
     <select id="countUserByQuery" resultType="java.lang.Integer">
         select
@@ -118,7 +119,7 @@
           sys_user u
         <where>
             <if test="username != null and username != ''">
-                u.username = #{username}
+                u.username like concat('%', #{username}, '%')
             </if>
         </where>
     </select>

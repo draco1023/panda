@@ -5,6 +5,8 @@ import com.yukong.panda.user.model.dto.SysRoleDTO;
 import com.yukong.panda.user.model.entity.SysRole;
 import com.yukong.panda.user.model.query.SysRoleQuery;
 
+import java.util.List;
+
 /**
  * @author: yukong
  * @date: 2018/11/1 15:40
@@ -45,5 +47,11 @@ public interface SysRoleService extends IService<SysRole> {
      * @return
      */
     SysRoleQuery pageByQuery(SysRoleQuery query);
+
+    /**
+     * 查询所有的角色
+     * @return
+     */
+    List<SysRole> listSysRole();
 
 }

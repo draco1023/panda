@@ -91,6 +91,11 @@ public class SysRoleServiceImpl  extends ServiceImpl<SysRoleMapper, SysRole> imp
         return query;
     }
 
+    @Override
+    public List<SysRole> listSysRole() {
+        return sysRoleMapper.selectList(new QueryWrapper<>());
+    }
+
     /**
      * 绑定角色与资源信息
      * @param sysRoleDTO

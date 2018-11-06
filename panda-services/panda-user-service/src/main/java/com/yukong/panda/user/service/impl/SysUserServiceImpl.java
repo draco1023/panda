@@ -121,7 +121,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         sysUserVo.getSysRoleVoList().forEach(role -> {
             SysUserRole sysUserRole = new SysUserRole();
             sysUserRole.setRoleId(role.getRoleId());
-            sysUserRole.setRoleId(sysUserRole.getUserId());
+            sysUserRole.setUserId(sysUserVo.getUserId());
             sysUserRoleMapper.insert(sysUserRole);
         });
     }

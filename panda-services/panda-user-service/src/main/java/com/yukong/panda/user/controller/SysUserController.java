@@ -68,6 +68,14 @@ public class SysUserController {
         return new ApiResult<>(sysUserService.delete(id));
     }
 
+    @GetMapping("/id/{id}")
+    public ApiResult<SysUser> get(@PathVariable("id") Integer id){
+        return new ApiResult<>(sysUserService.getById(id));
+    }
+
+
+
+
 
 
 }

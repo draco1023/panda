@@ -8,6 +8,8 @@ import com.yukong.panda.user.service.SysRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * @author yukong
  * @date 2018年11月01日15:15:54
@@ -43,5 +45,10 @@ public class SysRoleController {
     @GetMapping("/page")
     public ApiResult<SysRoleQuery> pageByQuery(SysRoleQuery sysRoleQuery){
         return new ApiResult<>(sysRoleService.pageByQuery(sysRoleQuery));
+    }
+
+    @GetMapping
+    public ApiResult<List<SysRole>> listRole(){
+        return new ApiResult<>(sysRoleService.listSysRole());
     }
 }

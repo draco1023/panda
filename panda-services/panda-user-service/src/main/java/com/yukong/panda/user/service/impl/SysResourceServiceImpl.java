@@ -59,7 +59,7 @@ public class SysResourceServiceImpl  extends ServiceImpl<SysResourceMapper, SysR
         return TreeUtil.list2Tree(sysResources, CommonConstants.TREE_ROOT);
     }
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public Boolean deleteResource(Integer id) {
         // 伪删除
