@@ -1,7 +1,0 @@
-config:
-  packageName: com.yukong.panda.gen.model.entity
-  queryPackageName: com.yukong.panda.gen.model.query
-  servicePackageName: com.yukong.panda.gen.service
-  serviceApiPackageName: com.yukong.panda.gen.service.api
-  daoPackageName: com.yukong.panda.gen.mapper
-  authorName: yukong

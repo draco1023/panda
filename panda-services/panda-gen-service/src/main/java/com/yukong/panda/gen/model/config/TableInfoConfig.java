@@ -13,9 +13,6 @@ import java.util.List;
  * @date: 2018/11/8 13:50
  */
 @Data
-@Component
-@ConfigurationProperties(prefix = "config")
-@PropertySource(value = "classpath:table-config.yml")
 public class TableInfoConfig extends BaseConfig{
 
     /**
