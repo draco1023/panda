@@ -22,6 +22,7 @@
         <jjwt-version>0.9.0</jjwt-version>
         <mybatis-plus-starter.version>3.0.1</mybatis-plus-starter.version>
         <mysql-connector.version>5.1.46</mysql-connector.version>
+        <swagger2.version>2.8.0 </swagger2.version>
     </properties>
     <modules>
         <module>panda-services</module>
