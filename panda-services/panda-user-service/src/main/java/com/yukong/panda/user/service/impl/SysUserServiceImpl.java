@@ -17,6 +17,7 @@ import com.yukong.panda.user.service.SysResourceService;
 import com.yukong.panda.user.service.SysUserService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -43,6 +44,9 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 
     @Autowired
     private SysUserRoleMapper sysUserRoleMapper;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public SysUserVo loadUserByUsername(String username) {
@@ -83,6 +87,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         // 新增用户
         SysUser sysUser = new SysUser();
         BeanUtils.copyProperties(sysUserVo, sysUser);
+        sysUser.setPassword(passwordEncoder.encode(sysUser.getPassword()));
         this.save(sysUser);
         sysUserVo.setUserId(sysUser.getUserId());
         // 角色用户信息维护

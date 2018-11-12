@@ -1,6 +1,7 @@
 package com.yukong.panda.auth.handler;
 
 import com.yukong.panda.auth.exception.CustomOauth2Exception;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.oauth2.common.exceptions.OAuth2Exception;
 import org.springframework.security.oauth2.provider.error.WebResponseExceptionTranslator;
@@ -13,10 +14,11 @@ import org.springframework.stereotype.Component;
  */
 
 @Component("customWebResponseExceptionTranslator")
+@Slf4j
 public class CustomWebResponseExceptionTranslator implements WebResponseExceptionTranslator {
     @Override
     public ResponseEntity<OAuth2Exception> translate(Exception e) throws Exception {
-
+        log.error(e.getStackTrace().toString());
         OAuth2Exception oAuth2Exception = (OAuth2Exception) e;
         return ResponseEntity
                 .status(oAuth2Exception.getHttpErrorCode())
