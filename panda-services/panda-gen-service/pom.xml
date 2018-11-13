@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>panda-gen-service</artifactId>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
 
     <name>panda-gen-service Maven Webapp</name>
 
@@ -62,5 +62,14 @@
         </dependency>
     </dependencies>
 
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
