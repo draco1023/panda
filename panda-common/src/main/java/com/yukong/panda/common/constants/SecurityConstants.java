@@ -12,6 +12,8 @@ public interface SecurityConstants {
      */
    String TOKEN_HEADER = "Authorization";
 
+   String CLOUD = "cloud";
+
    String CLOUD_PREFIX = "cloud_";
 
     /**

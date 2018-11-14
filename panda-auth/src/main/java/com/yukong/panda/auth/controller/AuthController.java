@@ -1,5 +1,7 @@
 package com.yukong.panda.auth.controller;
 
+import com.yukong.panda.common.constants.CommonConstants;
+import com.yukong.panda.common.constants.SecurityConstants;
 import com.yukong.panda.common.util.ApiResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
@@ -33,7 +35,7 @@ public class AuthController {
 
     @GetMapping("/token")
     public ApiResult<Collection<OAuth2AccessToken>> readAllToken() {
-        return new ApiResult<>(redisTokenStore.findTokensByClientId("*"));
+        return new ApiResult<>(redisTokenStore.findTokensByClientId(SecurityConstants.CLOUD));
     }
 
 }

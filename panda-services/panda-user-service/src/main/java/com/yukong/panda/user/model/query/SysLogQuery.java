@@ -35,4 +35,9 @@ public class SysLogQuery extends Page<SysLog> {
      */
     private String status;
 
+    /**
+     * 创建者
+     */
+    private String createBy;
+
 }

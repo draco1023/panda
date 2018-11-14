@@ -35,6 +35,9 @@
                 <if test="moduleName != '' and moduleName != null">
                     and   module_name  like concat('%',#{moduleName},'%')
                 </if>
+                <if test="createBy != '' and createBy != null">
+                    and   create_by  like concat('%',#{createBy},'%')
+                </if>
                 <if test="status != '' and status != null">
                     and  status = #{status}
                 </if>

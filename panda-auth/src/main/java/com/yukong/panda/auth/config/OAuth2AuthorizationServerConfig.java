@@ -3,9 +3,16 @@ package com.yukong.panda.auth.config;
 
 import com.yukong.panda.auth.handler.CustomWebResponseExceptionTranslator;
 import com.yukong.panda.auth.security.UserDetailsImpl;
+import com.yukong.panda.common.constants.MqQueueNameConstant;
+import com.yukong.panda.common.constants.PandaServiceNameConstants;
 import com.yukong.panda.common.constants.SecurityConstants;
 import com.yukong.panda.common.constants.UserConstants;
+import com.yukong.panda.common.dto.SysLogDTO;
+import com.yukong.panda.common.enums.OperationStatusEnum;
+import com.yukong.panda.common.enums.SysLogTypeEnum;
+import com.yukong.panda.common.util.UrlUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,7 +31,10 @@ import org.springframework.security.oauth2.provider.token.TokenEnhancer;
 import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.sql.DataSource;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -39,6 +49,9 @@ import java.util.Map;
 @Configuration
 @EnableAuthorizationServer
 public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
+
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -119,10 +132,26 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
         return new TokenEnhancer() {
             @Override
             public OAuth2AccessToken enhance(OAuth2AccessToken oAuth2AccessToken, OAuth2Authentication oAuth2Authentication) {
+
                 // 添加额外信息的map
                 final Map<String, Object> additionMessage = new HashMap<>(2);
                 // 获取当前登录的用户
                 UserDetailsImpl user = (UserDetailsImpl) oAuth2Authentication.getUserAuthentication().getPrincipal();
+                // 登录日志记录
+                HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+                SysLogDTO sysLogDTO = new SysLogDTO();
+                sysLogDTO
+                        .setCreateBy(user.getUsername())
+                        .setRequestUri(request.getRequestURI())
+                        .setUserAgent(request.getHeader("user-agent"))
+                        .setType(SysLogTypeEnum.LOGIN.getCode())
+                        .setStatus(OperationStatusEnum.SUCCESS.getCode())
+                        .setModuleName("auth认证模块")
+                        .setActionName("登录")
+                        .setServiceId(PandaServiceNameConstants.PANDA_AUTH)
+                        .setRemoteAddr(UrlUtil.getRemoteHost(request))
+                        .setMethod(request.getMethod());
+                rabbitTemplate.convertAndSend(MqQueueNameConstant.SYS_LOG_QUEUE, sysLogDTO);
                 log.info("当前用户为：{}", user);
                 // 如果用户不为空 则把id放入jwt token中
                 if (user != null) {
