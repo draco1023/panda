@@ -127,6 +127,7 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
                 // 如果用户不为空 则把id放入jwt token中
                 if (user != null) {
                     additionMessage.put(UserConstants.USER_ID, user.getUserId());
+                    additionMessage.put(UserConstants.USER_NAME, user.getUsername());
                 }
                 ((DefaultOAuth2AccessToken)oAuth2AccessToken).setAdditionalInformation(additionMessage);
                 return oAuth2AccessToken;

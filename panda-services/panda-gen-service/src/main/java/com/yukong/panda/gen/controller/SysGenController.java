@@ -1,5 +1,7 @@
 package com.yukong.panda.gen.controller;
 
+import com.yukong.panda.common.annotation.SysLog;
+import com.yukong.panda.common.constants.PandaServiceNameConstants;
 import com.yukong.panda.common.util.ApiResult;
 import com.yukong.panda.gen.model.dto.BuildConfigDTO;
 import com.yukong.panda.gen.model.entity.TableInfo;
@@ -31,12 +33,16 @@ import java.util.List;
 @Api(value = "代码生成controller", tags = {"代码生成接口管理"})
 public class SysGenController {
 
+    private static final String MODULE_NAME = "代码生成模块";
+
+
     @Autowired
     private TableInfoService tableInfoService;
 
     @Autowired
     private SysGenService sysGenService;
 
+  //  @SysLog(serviceId = PandaServiceNameConstants.PANDA_GEN_SERVICE, moduleName = MODULE_NAME, actionName = "分页查询数据库中所有的表信息")
     @ApiOperation(value = "分页查询数据库中所有的表信息", notes = "分页查询数据库中所有的表信息", httpMethod = "GET")
     @ApiImplicitParam(name = "query", value = "表信息查询条件", required = false, dataType = "TableInfoQuery")
     @ResponseBody
@@ -46,6 +52,7 @@ public class SysGenController {
     }
 
 
+    @SysLog(serviceId = PandaServiceNameConstants.PANDA_GEN_SERVICE, moduleName = MODULE_NAME, actionName = "根据表名称生成代码  返回zip包")
     @ApiOperation(value = "根据表名称生成代码", notes = "根据表名称生成代码  返回zip包", httpMethod = "POST")
     @ApiImplicitParam(name = "buildConfigDTO", value = "表配置", required = true, dataType = "BuildConfigDTO")
     @PostMapping("/code")

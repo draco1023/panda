@@ -18,6 +18,7 @@ spring:
 
 ignore:
   urls:
+  - /token/**
   - /**/*.css
   - /auth/**
   - /refresh/**

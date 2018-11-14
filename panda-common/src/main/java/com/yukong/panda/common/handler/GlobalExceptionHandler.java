@@ -19,7 +19,7 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ApiResult exception(Exception e) {
         log.error("发生异常, e={}",e.getMessage(), e);
-        return null;
+        return new ApiResult(e);
     }
 
 }
