@@ -117,7 +117,7 @@ public class GenUtil {
         String resourcesPath = "main" + File.separator + "resources";
         String className = tableInfoConfig.getClassName();
         if (template.contains("Entity.java.vm")) {
-            return packagePath + "model" + File.separator + "entity" + File.separator + className
+            return packagePath + File.separator + className
                     + ".java";
         }
         if (template.contains("dao.java.vm")) {

@@ -18,6 +18,11 @@ spring:
 
 ignore:
   urls:
+  - /token/**
   - /**/*.css
   - /auth/**
-
+  - /refresh/**
+  - /swagger-ui.html
+  - /swagger-resources/**
+  - /*/v2/api-docs
+  - /webjars/**

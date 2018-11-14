@@ -23,7 +23,7 @@ public class CustomOauthExceptionSerializer extends StdSerializer<CustomOauth2Ex
     }
 
     @Override
-    public void serialize(CustomOauth2Exception value, JsonGenerator gen, SerializerProvider serializerProvider) throws IOException {
+    public  void serialize(CustomOauth2Exception value, JsonGenerator gen, SerializerProvider serializerProvider) throws IOException {
         HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();
         gen.writeStartObject();
         gen.writeStringField("code", String.valueOf(value.getHttpErrorCode()));

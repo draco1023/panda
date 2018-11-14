@@ -2,27 +2,19 @@ package com.yukong.panda.common.enums;
 
 /**
  * @author: yukong
- * @date: 2018/10/9 14:35
- * @description: 用户状态枚举
+ * @date: 2018/10/17 16:03
+ * @description: 资源类型枚举
  */
-public enum  UserStatusEnum {
-
-    /**
-     * 正常
-     */
-    NORMAL("0", "正常"),
-
-    /**
-     * 锁定
-     */
-    LOCK("1","锁定");
+public enum SysLogTypeEnum {
+    LOGIN("0", "登录日志"),
+    OPERATOR("1","操作日志");
 
 
     private String code;
 
     private String message;
 
-    UserStatusEnum(String code, String message) {
+    SysLogTypeEnum(String code, String message) {
         this.code = code;
         this.message = message;
     }

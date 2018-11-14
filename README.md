@@ -12,13 +12,23 @@
 后续会陆续支持 zipkin服务链路监控  springboot-admin 服务健康监控等
 ## 进度
 
+![index](https://github.com/YuKongEr/panda/blob/master/imgs/index.png)
+
 ![resource-1](https://github.com/YuKongEr/panda/blob/master/imgs/resource-1.png)
 
 ![resource-2](https://github.com/YuKongEr/panda/blob/master/imgs/resource-2.png)
 
 ![role](https://github.com/YuKongEr/panda/blob/master/imgs/role.png)
 
-![code](https://github.com/YuKongEr/panda/blob/master/imgs/code.png)
+![login-log](https://github.com/YuKongEr/panda/blob/master/imgs/login-log.png)
+
+![operator-log](https://github.com/YuKongEr/panda/blob/master/imgs/operator-log.png)
+
+![exception-log-1](https://github.com/YuKongEr/panda/blob/master/imgs/exception-log-1.png)
+
+![exception-log-2](https://github.com/YuKongEr/panda/blob/master/imgs/exception-log-2.png)
+
+![gen](https://github.com/YuKongEr/panda/blob/master/imgs/code.png)
 
 - [x] 登录管理
   - [x] 登录
@@ -39,12 +49,21 @@
     - [x] 添加用户
     - [x] 修改用户
     - [x] 分配角色
+  - [ ] 字典管理
+  - [ ] 终端管理
   - [ ] 令牌管理
-  - [ ] 日志管理
+- [x] 日志管理
+    - [x] 登录日志
+       - [x] 查询日志
+    - [x] 操作日志
+       - [x] 查询日志
+    - [x] 异常日志
+       - [x] 查询日志
 - [x] 研发管理
   - [x] 代码生成
     - [x] 查询表格
     - [x] 生成代码
+  - [x] 接口文档
 - [ ] 个人中心
   - [ ] 查看资料
   - [ ] 修改资料

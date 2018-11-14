@@ -26,6 +26,9 @@ public class UserUtil {
      */
     public static String getToken(HttpServletRequest request){
         String authorization = request.getHeader(SecurityConstants.TOKEN_HEADER);
+        if(authorization == null){
+            return null;
+        }
         String token = authorization.split(" ")[1];
         log.info("获取token成功，值为{}", token);
         return token;
@@ -49,10 +52,29 @@ public class UserUtil {
      */
     public static Integer getUserId(HttpServletRequest request){
         String token = getToken(request);
+        if(token == null){
+            return null;
+        }
         Claims claims = getClaims(token);
         Integer userId = (Integer) claims.get(UserConstants.USER_ID);
         log.info("获取userId成功，值为", userId);
         return userId;
+    }
+
+    /**
+     * 获取请求中的userId
+     * @param request
+     * @return userId
+     */
+    public static String getUserName(HttpServletRequest request){
+        String token = getToken(request);
+        if(token == null){
+            return null;
+        }
+        Claims claims = getClaims(token);
+        String username = (String) claims.get(UserConstants.USER_NAME);
+        log.info("获取username成功，值为", username);
+        return username;
     }
 
     /**
@@ -62,6 +84,9 @@ public class UserUtil {
      */
     public static List<String> getRoles(HttpServletRequest request) {
         String token = getToken(request);
+        if(token == null){
+            return null;
+        }
         Claims claims = getClaims(token);
         List<String> roles = (List<String>) claims.get(UserConstants.AUTHORITIES);
         return roles;
