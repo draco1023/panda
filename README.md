@@ -20,7 +20,15 @@
 
 ![role](https://github.com/YuKongEr/panda/blob/master/imgs/role.png)
 
-![code](https://github.com/YuKongEr/panda/blob/master/imgs/code.png)
+![login-log](https://github.com/YuKongEr/panda/blob/master/imgs/login-log.png)
+
+![operator-log](https://github.com/YuKongEr/panda/blob/master/imgs/operator-log.png)
+
+![exception-log-1](https://github.com/YuKongEr/panda/blob/master/imgs/exception-log-1.png)
+
+![exception-log-2](https://github.com/YuKongEr/panda/blob/master/imgs/exception-log-2.png)
+
+![gen](https://github.com/YuKongEr/panda/blob/master/imgs/code.png)
 
 - [x] 登录管理
   - [x] 登录
