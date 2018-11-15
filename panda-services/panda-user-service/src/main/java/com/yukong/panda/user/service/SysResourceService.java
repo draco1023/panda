@@ -43,4 +43,11 @@ public interface SysResourceService extends IService<SysResource> {
      */
     Boolean deleteResource(Integer id);
 
+    /**
+     * 根据角色code查询资源信息
+     * @param roleCode
+     * @return
+     */
+    List<SysResource>findResourceByRoleCode(String roleCode);
+
 }

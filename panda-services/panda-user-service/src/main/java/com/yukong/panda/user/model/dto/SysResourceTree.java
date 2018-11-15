@@ -84,6 +84,17 @@ public class SysResourceTree {
      */
     private String delFlag;
 
+    /**
+     * 后台请求url
+     */
+    private String url;
+
+
+    /**
+     * 请求方式
+     */
+    private String method;
+
     public void addChildren(SysResourceTree tree) {
         this.children.add(tree);
     }

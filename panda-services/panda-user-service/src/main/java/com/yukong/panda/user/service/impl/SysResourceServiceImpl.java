@@ -74,4 +74,9 @@ public class SysResourceServiceImpl  extends ServiceImpl<SysResourceMapper, SysR
         super.update(resource, wrapper);
         return true;
     }
+
+    @Override
+    public List<SysResource> findResourceByRoleCode(String roleCode) {
+        return sysResourceMapper.findResourceByRoleCode(roleCode);
+    }
 }

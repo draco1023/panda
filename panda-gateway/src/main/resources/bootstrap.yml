@@ -32,3 +32,6 @@ swagger:
 # 关闭默认路由
 zuul:
   ignoredServices: '*'
+
+logging:
+  level: debug

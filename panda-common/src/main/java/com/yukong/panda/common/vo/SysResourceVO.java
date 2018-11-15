@@ -1,7 +1,6 @@
-package com.yukong.panda.user.model.entity;
+package com.yukong.panda.common.vo;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
+
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -17,14 +16,13 @@ import java.time.LocalDateTime;
  */
 @Data
 @Accessors(chain = true)
-public class SysResource{
+public class SysResourceVO {
 
     private static final long serialVersionUID = 1L;
 
     /**
      * 主键
      */
-    @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
     /**
@@ -98,7 +96,6 @@ public class SysResource{
      * 请求方式
      */
     private String method;
-
 
 
 }
