@@ -12,14 +12,14 @@ public interface SecurityConstants {
      */
    String TOKEN_HEADER = "Authorization";
 
-   String CLOUD = "cloud";
+   String CLOUD = "panda";
 
-   String CLOUD_PREFIX = "cloud_";
+   String CLOUD_PREFIX = "panda_";
 
     /**
      * jwt 加密key
      */
-   String SIGN_KEY = "CLOUD";
+   String SIGN_KEY = "PANDA";
 
     /**
      * sys_oauth_client_details 字段
