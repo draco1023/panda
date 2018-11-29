@@ -1,3 +1,13 @@
+
+[![](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/YuKongEr/panda)
+[![](https://img.shields.io/badge/release-v1.0-brightgreen.svg
+)](https://github.com/YuKongEr/panda)
+[![](https://img.shields.io/badge/springboot-%3E%3D2.0-blue.svg
+)](https://github.com/YuKongEr/panda)
+
+[![](https://img.shields.io/badge/springcloud-Finchley.SR1-blue.svg
+)](https://github.com/YuKongEr/panda)
+
 ## 介绍
 - panda-server 服务注册中心
 - panda-auth  oauth2 认证服务器 提供token
