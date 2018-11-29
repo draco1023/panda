@@ -3,9 +3,7 @@
 [![](https://img.shields.io/badge/release-v1.0-brightgreen.svg
 )](https://github.com/YuKongEr/panda)
 [![](https://img.shields.io/badge/springboot-%3E%3D2.0-blue.svg
-)](https://github.com/YuKongEr/panda)
-
-[![](https://img.shields.io/badge/springcloud-Finchley.SR1-blue.svg
+)](https://github.com/YuKongEr/panda)[![](https://img.shields.io/badge/springcloud-Finchley.SR1-blue.svg
 )](https://github.com/YuKongEr/panda)
 
 ## 介绍
