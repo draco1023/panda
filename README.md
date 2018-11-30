@@ -6,7 +6,30 @@
 )](https://github.com/YuKongEr/panda)[![](https://img.shields.io/badge/springcloud-Finchley.SR1-blue.svg
 )](https://github.com/YuKongEr/panda)
 
+## 技术选型&文档
+
+- Spring Boot（[查看Spring Boot学习&使用指南](https://www.jianshu.com/p/0d400d30936b)）
+- Spring Cloud（[查看官方中文文档](https://springcloud.cc/spring-cloud-dalston.html)）
+
+- Spring Security Oauth2（[查看官方中文文档](http://projects.spring.io/spring-security-oauth/docs/oauth2.html)）
+
+- MyBatis（[查看官方中文文档](http://www.mybatis.org/mybatis-3/zh/index.html)）
+
+- MyBatis plus（[查看官方中文文档](http://mp.baomidou.com/)）
+
+- Vue.js（[查看官方中文文档](https://cn.vuejs.org/)）
+
+- ElementUI（[查看官方中文文档](http://element.eleme.io/#/)）
+
+- Redis
+
+- RabbitMq
+
+- OSS
+
+
 ## 介绍
+
 - panda-server 服务注册中心
 - panda-auth  oauth2 认证服务器 提供token
 - panda-common 公共模块集合
