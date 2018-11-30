@@ -12,6 +12,6 @@ public interface CommonConstants {
      */
     Integer TREE_ROOT = -1;
 
-    String PANDA_REDIS_LIST_LEY = "panda_client_id_to_access:panda";
+    String PANDA_REDIS_LIST_LEY = "panda_client_id_to_access:cloud";
 
 }
