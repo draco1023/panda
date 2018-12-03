@@ -1,6 +1,7 @@
 package com.yukong.panda.user.model.dto;
 
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 import java.time.LocalDateTime;
 import java.util.List;
