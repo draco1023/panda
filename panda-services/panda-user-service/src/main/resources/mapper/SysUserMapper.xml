@@ -112,6 +112,37 @@
           where u.username = #{username}
 
     </select>
+
+    <select id="loadUserByMobile" resultMap="userVOResultMap">
+        select
+               u.user_id,
+               u.username,
+               u.password,
+               u.email,
+               u.mobile,
+               u.qq,
+               u.wechat,
+               u.weibo,
+               u.avatar,
+               u.qq_openid,
+               u.wechat_openid,
+               u.weibo_openid,
+               u.create_time,
+               u.modify_time,
+               u.del_flag,
+               sr.role_id,
+               sr.role_name,
+               sr.role_code,
+               sr.create_time as rcreate_time,
+               sr.modify_time as rmodify_time,
+               sr.del_flag as rdel_flag
+        from
+             sys_user as u
+                 left join sys_user_role as sur on sur.user_id = u.user_id
+                 left join sys_role as sr on sr.role_id = sur.role_id
+        where u.mobile = #{mobile}
+
+    </select>
     <select id="countUserByQuery" resultType="java.lang.Integer">
         select
           count(1)

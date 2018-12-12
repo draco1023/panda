@@ -54,6 +54,11 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     }
 
     @Override
+    public SysUserVo loadUserByMobile(String mobile) {
+        return sysUserMapper.loadUserByMobile(mobile);
+    }
+
+    @Override
     public SysUserInfoDTO getUserInfo(Integer userId, List<String> roles) {
         SysUserInfoDTO sysUserInfoDTO = new SysUserInfoDTO();
         SysUser sysUser = sysUserMapper.selectById(userId);

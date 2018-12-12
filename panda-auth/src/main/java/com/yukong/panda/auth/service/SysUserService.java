@@ -28,4 +28,12 @@ public interface SysUserService {
     @GetMapping("/user/loadUserByUsername/{username}")
     SysUserVo loadUserByUsername(@PathVariable(value = "username") String username);
 
+    /**
+     * 通过mobile查找用户
+     * @param mobile
+     * @return
+     */
+    @GetMapping("/user/loadUserByMobile/{mobile}")
+    SysUserVo loadUserByMobile(@PathVariable(value = "mobile") String mobile);
+
 }

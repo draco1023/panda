@@ -27,6 +27,13 @@ public interface SysUserService extends IService<SysUser> {
     SysUserVo loadUserByUsername(String username);
 
     /**
+     * 通过mobile查找用户
+     * @param mobile
+     * @return
+     */
+    SysUserVo loadUserByMobile(String mobile);
+
+    /**
      * 根据userid 与角色信息返回用户详细信息
      * @param userId
      * @param roles

@@ -43,4 +43,17 @@ public interface SecurityConstants {
      */
    String DEFAULT_FIND_STATEMENT_BY_CLIENT_ID = BASE_FIND_STATEMENT + " where client_id = ?";
 
+
+   String SPRING_SECURITY_MOBILE_KEY = "mobile";
+
+   String SPRING_SECURITY_CODE_KEY = "code";
+
+    /**
+     * 手机验证码登录的地址
+     */
+   String SPRING_SECURITY_MOBILE_TOKEN_URL = "/mobile/token";
+
+
+   String REDIS_CODE_PREFIX = "panda_code_";
+
 }

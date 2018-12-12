@@ -25,6 +25,13 @@ public interface SysUserMapper extends BaseMapper<SysUser> {
     SysUserVo loadUserByUsername(String username);
 
     /**
+     * 根据用户名查询用户信息（包括角色信息）
+     * @param mobile 手机号
+     * @return
+     */
+    SysUserVo loadUserByMobile(String mobile);
+
+    /**
      * 用户信息分页查询
      * @param query
      * @return

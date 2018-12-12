@@ -57,7 +57,13 @@ public class SysUserController {
         return sysUserService.loadUserByUsername(username);
     }
 
-  //  @SysLog(serviceId = PandaServiceNameConstants.PANDA_USER_SERVICE, moduleName = MODULE_NAME, actionName = "根据token获取用户角色信息")
+    @ApiOperation(value = "根据mobile获取用户信息", notes = "用户详细信息，附带角色信息，权限信息", httpMethod = "GET")
+    @ApiImplicitParam(name = "username", value = "用户名", required = true, dataType = "string")
+    @GetMapping("/loadUserByMobile/{username}")
+    public SysUserVo loadUserByMobile(@PathVariable(value = "mobile") String mobile){
+        return sysUserService.loadUserByMobile(mobile);
+    }
+
     @ApiOperation(value = "获取用户角色信息", notes = "根据token获取用户角色信息", httpMethod = "GET")
     @GetMapping("/roles")
     public ApiResult<List<String>> getRoles(){
