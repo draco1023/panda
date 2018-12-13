@@ -20,7 +20,13 @@ public class SysUserServiceFallback implements SysUserService {
 
     @Override
     public SysUserVo loadUserByUsername(String username) {
-        log.error("调用{}方法异常，参数：{}", "loadUserByUsername", username);
+        log.error("调用loadUserByUsername方法异常，参数：{}", username);
        return null;
+    }
+
+    @Override
+    public SysUserVo loadUserByMobile(String mobile) {
+        log.error("调用loadUserByMobile方法异常，参数：{}", mobile);
+        return null;
     }
 }

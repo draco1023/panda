@@ -59,7 +59,7 @@ public class SysUserController {
 
     @ApiOperation(value = "根据mobile获取用户信息", notes = "用户详细信息，附带角色信息，权限信息", httpMethod = "GET")
     @ApiImplicitParam(name = "username", value = "用户名", required = true, dataType = "string")
-    @GetMapping("/loadUserByMobile/{username}")
+    @GetMapping("/loadUserByMobile/{mobile}")
     public SysUserVo loadUserByMobile(@PathVariable(value = "mobile") String mobile){
         return sysUserService.loadUserByMobile(mobile);
     }

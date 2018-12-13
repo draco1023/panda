@@ -37,7 +37,7 @@ public class MobileAuthenticationProvider implements AuthenticationProvider {
         MobileAuthenticationToken mobileAuthenticationToken = (MobileAuthenticationToken) authentication;
         String mobile = mobileAuthenticationToken.getPrincipal().toString();
         String realCode = redisTemplate.opsForValue().get(SecurityConstants.REDIS_CODE_PREFIX + mobile);
-        String inputCode = (String) authentication.getCredentials();
+        String inputCode = authentication.getCredentials().toString();
         // 判断手机的验证码是否存在
         if (realCode == null) {
             logger.debug("登录失败，当前手机号验证码不存在或者已经过期");
@@ -64,7 +64,7 @@ public class MobileAuthenticationProvider implements AuthenticationProvider {
 
     @Override
     public boolean supports(Class<?> authentication) {
-        return false;
+        return MobileAuthenticationToken.class.isAssignableFrom(authentication);
     }
 
 

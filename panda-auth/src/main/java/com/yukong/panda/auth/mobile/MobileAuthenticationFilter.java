@@ -26,7 +26,7 @@ public class MobileAuthenticationFilter extends AbstractAuthenticationProcessing
 
     private boolean postOnly = true;
 
-    protected MobileAuthenticationFilter() {
+    public MobileAuthenticationFilter() {
         super(SecurityConstants.SPRING_SECURITY_MOBILE_TOKEN_URL);
     }
 

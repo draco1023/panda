@@ -63,7 +63,7 @@ public class CodeGenerator {
 
         // 包配置
         PackageConfig pc = new PackageConfig();
-        pc.setParent("com.yukong");
+        pc.setParent("com.yukong.panda.user");
         mpg.setPackageInfo(pc);
 
         // 自定义配置

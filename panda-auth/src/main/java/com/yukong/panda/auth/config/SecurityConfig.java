@@ -1,10 +1,15 @@
 package com.yukong.panda.auth.config;
 
+import com.yukong.panda.auth.mobile.MobileAuthenticationFilter;
+import com.yukong.panda.auth.mobile.MobileAuthenticationProvider;
 import com.yukong.panda.auth.security.UserDetailsServiceImpl;
+import com.yukong.panda.auth.service.SysUserService;
 import com.yukong.panda.common.config.IgnoreUrlPropertiesConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -13,6 +18,7 @@ import org.springframework.security.config.annotation.web.configurers.Expression
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 /**
  * @author: yukong
@@ -24,6 +30,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private IgnoreUrlPropertiesConfig ignoreUrlPropertiesConfig;
+
+    @Autowired
+    private AuthenticationSuccessHandler authenticationSuccessHandler;
+    @Autowired
+    private SysUserService sysUserService;
+    @Autowired
+    private RedisTemplate<String, String> redisTemplate;
+
+    @Bean
+    public AuthenticationProvider mobileAuthenticationProvider() {
+        MobileAuthenticationProvider mobileAuthenticationProvider = new MobileAuthenticationProvider();
+        mobileAuthenticationProvider.setSysUserService(sysUserService);
+        mobileAuthenticationProvider.setRedisTemplate(redisTemplate);
+        return mobileAuthenticationProvider;
+    }
+
 
     @Override
     @Bean
@@ -40,6 +62,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth
+                .authenticationProvider(mobileAuthenticationProvider())
                 .userDetailsService(userDetailsService())
                 .passwordEncoder(passwordEncoder());
     }
@@ -68,4 +91,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return manager;
     }
 
+
+    /**
+     * 自定义登陆过滤器
+     * @return
+     */
+    @Bean
+    public MobileAuthenticationFilter mobileAuthenticationFilter() {
+        MobileAuthenticationFilter filter = new MobileAuthenticationFilter();
+        try {
+            filter.setAuthenticationManager(this.authenticationManagerBean());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        filter.setAuthenticationSuccessHandler(authenticationSuccessHandler);
+        return filter;
+    }
 }
