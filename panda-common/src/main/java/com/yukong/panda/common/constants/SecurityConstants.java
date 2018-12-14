@@ -56,4 +56,6 @@ public interface SecurityConstants {
 
    String REDIS_CODE_PREFIX = "panda_code_";
 
+   Integer REDIS_CODE_EXPIRE = 60;
+
 }

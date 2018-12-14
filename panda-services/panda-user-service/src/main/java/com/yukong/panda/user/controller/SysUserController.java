@@ -1,7 +1,14 @@
 package com.yukong.panda.user.controller;
 
 import com.yukong.panda.common.annotation.SysLog;
+import com.yukong.panda.common.constants.CommonConstants;
+import com.yukong.panda.common.constants.MqQueueNameConstant;
 import com.yukong.panda.common.constants.PandaServiceNameConstants;
+import com.yukong.panda.common.constants.SecurityConstants;
+import com.yukong.panda.common.enums.ResponseCodeEnum;
+import com.yukong.panda.common.enums.SmsMessageChannnelEnum;
+import com.yukong.panda.common.enums.SmsTemplateEnum;
+import com.yukong.panda.common.template.sms.SmsMessageTemplate;
 import com.yukong.panda.common.util.ApiResult;
 import com.yukong.panda.common.util.UserUtil;
 import com.yukong.panda.common.vo.SysUserVo;
@@ -15,11 +22,16 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
+import org.apache.commons.lang.RandomStringUtils;
+import org.apache.commons.lang.StringUtils;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author: yukong
@@ -39,6 +51,12 @@ public class SysUserController {
 
     @Autowired
     private HttpServletRequest request;
+
+    @Autowired
+    private RedisTemplate<String, Object> redisTemplate;
+
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
 
   //  @SysLog(serviceId = PandaServiceNameConstants.PANDA_USER_SERVICE, moduleName = MODULE_NAME, actionName = "根据token获取用户信息")
     @ApiOperation(value = "获取用户信息", notes = "用户详细信息，附带角色信息，权限信息", httpMethod = "GET")
@@ -110,7 +128,36 @@ public class SysUserController {
         return new ApiResult<>(sysUserService.getById(id));
     }
 
+    @ApiOperation(value = "发送登录验证码", notes = "发送登录验证码", httpMethod = "GET")
+    @ApiImplicitParam(name = "mobile", value = "电话号码", required = true, dataType = "string")
+    @GetMapping("/mobile/{mobile}")
+    public ApiResult<String> sendMobileCode(@PathVariable("mobile") String mobile){
+        Object originCode  = redisTemplate.opsForValue().get(SecurityConstants.REDIS_CODE_PREFIX + mobile);
+        if(originCode != null) {
+            log.info("手机号{}验证码{}尚未失效，请失效后再申请。", mobile, originCode);
+            return new ApiResult<>("验证码尚未失效", ResponseCodeEnum.FAIL);
+        }
+        SysUserVo sysUserVo = sysUserService.loadUserByMobile(mobile);
+        if(sysUserVo == null) {
+            log.error("手机号为{} 用户不存在", mobile);
+            return new ApiResult<String>("手机号不存在", ResponseCodeEnum.FAIL);
+        }
+        String code = RandomStringUtils.random(4, false, true);
 
+        String[] params = {code};
+        SmsMessageTemplate smsMessageTemplate = new SmsMessageTemplate();
+        smsMessageTemplate.setParams(params);
+        smsMessageTemplate.setMobile(mobile);
+        smsMessageTemplate.setSignName(SmsTemplateEnum.LOGIN_CODE.getSignName());
+        smsMessageTemplate.setTemplate(SmsTemplateEnum.LOGIN_CODE.getTempalte());
+        smsMessageTemplate.setChannel(SmsMessageChannnelEnum.TENCENT_CLOUD.getCode());
+
+        // 发送消息处理中心
+        rabbitTemplate.convertAndSend(MqQueueNameConstant.MOBILE_CODE_QUEUE,smsMessageTemplate);
+        // 存redis
+        redisTemplate.opsForValue().set(SecurityConstants.REDIS_CODE_PREFIX+mobile, Integer.valueOf(code), SecurityConstants.REDIS_CODE_EXPIRE, TimeUnit.SECONDS);
+        return new ApiResult<>(code);
+    }
 
 
 
