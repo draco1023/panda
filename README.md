@@ -3,7 +3,8 @@
 [![](https://img.shields.io/badge/release-v1.0-brightgreen.svg
 )](https://github.com/YuKongEr/panda)
 [![](https://img.shields.io/badge/springboot-%3E%3D2.0-blue.svg
-)](https://github.com/YuKongEr/panda)[![](https://img.shields.io/badge/springcloud-Finchley.SR1-blue.svg
+)](https://github.com/YuKongEr/panda)
+[![](https://img.shields.io/badge/springcloud-Finchley.SR1-blue.svg
 )](https://github.com/YuKongEr/panda)
 
 ## 技术选型&文档
@@ -99,7 +100,13 @@
   - [ ] 查看资料
   - [ ] 修改资料
 
-
+- 代码生成：提供灵活模板设置，减少重复工作
+- 全面登录：手机验证码登录，用户名密码登录
+- 动态路由: 基于zuul配置，提供ui界面配置
+- 操作日志：记录登录日志，操作日志，异常日志，采用自己定义注解`@SysLog`即可
+- 消息总线：使用spring bus提供配置动态刷新
+- 接口文档：zuul聚合swagger 提供api文档
+- 消息中心：集成阿里云 腾讯云 钉钉，提供接口发送短信、邮件
 
 
  ## 启动教程
