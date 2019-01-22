@@ -30,6 +30,7 @@
     <modules>
         <module>panda-services</module>
         <module>panda-auth</module>
+        <module>panda-server</module>
         <module>panda-common</module>
         <module>panda-config-server</module>
         <module>panda-gateway</module>

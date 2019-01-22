@@ -1,5 +1,6 @@
 package com.yukong.panda.common.config;
 
+import lombok.Data;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;

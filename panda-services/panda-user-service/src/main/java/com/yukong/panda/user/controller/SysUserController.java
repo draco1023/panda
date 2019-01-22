@@ -1,5 +1,6 @@
 package com.yukong.panda.user.controller;
 
+import com.baomidou.mybatisplus.extension.api.R;
 import com.yukong.panda.common.annotation.SysLog;
 import com.yukong.panda.common.constants.CommonConstants;
 import com.yukong.panda.common.constants.MqQueueNameConstant;
@@ -143,7 +144,6 @@ public class SysUserController {
             return new ApiResult<String>("手机号不存在", ResponseCodeEnum.FAIL);
         }
         String code = RandomStringUtils.random(4, false, true);
-
         String[] params = {code};
         SmsMessageTemplate smsMessageTemplate = new SmsMessageTemplate();
         smsMessageTemplate.setParams(params);
