@@ -12,6 +12,7 @@ spring:
           uri: https://github.com/YuKongEr/config-reps
           default-label: ${spring.profiles.active}
 
+
 eureka:
   client:
     service-url:
