@@ -14,7 +14,12 @@ spring:
       profile: ${spring.profiles.active}
       label: ${spring.profiles.active}
       name: ${spring.application.name}
-
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://193.112.100.103:8761/eureka/
 
 ignore:
   urls:
