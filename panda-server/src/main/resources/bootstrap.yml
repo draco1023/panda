@@ -5,7 +5,6 @@ spring:
     name: panda-server
 eureka:
   instance:
-    hostname: 193.112.100.103
     preferIpAddress: true
   client:
     # 是否将自己注册到eureka上去
@@ -13,4 +12,4 @@ eureka:
     # 是否从eureka上拉取已注册服务列表
     fetch-registry: false
     service-url:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+      defaultZone: http://193.112.100.103:${server.port}/eureka/
