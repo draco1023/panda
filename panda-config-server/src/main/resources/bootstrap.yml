@@ -15,4 +15,4 @@ spring:
 eureka:
   client:
     service-url:
-      defauleZone: http://localhost:8761/eureka/
+      defauleZone: http://193.112.100.103:8761/eureka/

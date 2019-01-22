@@ -5,7 +5,7 @@ spring:
     name: panda-server
 eureka:
   instance:
-    hostname: localhost
+    hostname: 193.112.100.103
     preferIpAddress: true
   client:
     # 是否将自己注册到eureka上去
