@@ -14,6 +14,7 @@ spring:
 
 eureka:
   instance:
+    ip-address: 193.112.100.103
     prefer-ip-address: true
   client:
     service-url:
