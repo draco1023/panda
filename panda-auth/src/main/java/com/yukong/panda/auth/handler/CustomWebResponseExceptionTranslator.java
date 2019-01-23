@@ -55,12 +55,12 @@ public class CustomWebResponseExceptionTranslator implements WebResponseExceptio
         log.error(e.getStackTrace().toString());
         if (!(e instanceof OAuth2Exception)) {
             return ResponseEntity
-                    .status(HttpStatus.UNAUTHORIZED)
+                    .status(HttpStatus.BAD_REQUEST)
                     .body(new CustomOauth2Exception(e.getMessage()));
         }
         OAuth2Exception oAuth2Exception = (OAuth2Exception) e;
         return ResponseEntity
-                .status(HttpStatus.UNAUTHORIZED)
+                .status(HttpStatus.NOT_ACCEPTABLE)
                 .body(new CustomOauth2Exception(oAuth2Exception.getMessage()));
     }
 }

@@ -50,3 +50,10 @@ mybatis-plus:
 logging:
   level:
     com.yukong.panda.user.mapper: debug
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://193.112.100.103:8761/eureka/

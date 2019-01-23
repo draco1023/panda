@@ -33,3 +33,11 @@ swagger:
 # 关闭默认路由
 zuul:
   ignoredServices: '*'
+
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://193.112.100.103:8761/eureka/
