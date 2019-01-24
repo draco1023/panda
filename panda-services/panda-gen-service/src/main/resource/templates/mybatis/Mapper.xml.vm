@@ -15,4 +15,20 @@
         #end
     </resultMap>
 
+    <select id="pageByQuery" resultMap="${tableInfo.className}Map">
+        select * from sys_dict  ${tableInfo.tableName}
+        <where >
+            #foreach ($column in ${tableInfo.columnInfo})
+            #if($column.attrType == "String")
+            <if test=" $column.attrName != '' and  $column.attrName != null">
+                and   $column.columnName = #{ $column.attrName}
+            </if>
+            #else
+            <if test="$column.attrName != null">
+                and   $column.columnName = #{ $column.attrName}
+            </if>
+            #end
+            #end
+        </where>
+    </select>
 </mapper>

@@ -41,6 +41,17 @@ public class BuildConfigDTO {
     private String daoPackageName;
 
     /**
+     * mapper类包名
+     */
+    private String mapperPackageName;
+
+    /**
+     * controller类包名
+     */
+    private String controllerPackageName;
+
+
+    /**
      * 作者名称
      */
     private String authorName;

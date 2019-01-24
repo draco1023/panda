@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
  * @date: 2018/11/8 13:54
  */
 @Data
-
 public class BaseConfig {
 
     /**
@@ -22,6 +21,16 @@ public class BaseConfig {
      * query类的包名
      */
     private String queryPackageName;
+
+    /**
+     * mapper类包名
+     */
+    private String mapperPackageName;
+
+    /**
+     * controller类包名
+     */
+    private String controllerPackageName;
 
     /**
      * service类包名

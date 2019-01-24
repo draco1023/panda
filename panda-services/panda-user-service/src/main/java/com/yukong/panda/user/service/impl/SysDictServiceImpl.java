@@ -1,6 +1,5 @@
 package com.yukong.panda.user.service.impl;
 
-import com.yukong.panda.common.base.service.BaseService;
 import com.yukong.panda.common.base.service.impl.BaseServiceImpl;
 import com.yukong.panda.user.mapper.SysDictMapper;
 import com.yukong.panda.user.model.entity.SysDict;

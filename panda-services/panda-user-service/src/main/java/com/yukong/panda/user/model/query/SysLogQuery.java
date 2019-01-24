@@ -1,10 +1,7 @@
 package com.yukong.panda.user.model.query;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.yukong.panda.user.model.entity.SysLog;
-import com.yukong.panda.user.model.entity.SysRole;
 import lombok.Data;
 
 /**

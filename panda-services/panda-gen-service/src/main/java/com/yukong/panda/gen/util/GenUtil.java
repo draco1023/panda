@@ -36,16 +36,24 @@ public class GenUtil {
 
     public static List<String> getTemplates(String genType) {
         List<String> templates = new ArrayList<String>();
-        templates.add("templates/Entity.java.vm");
+
         if(GenTypeEnum.IBATIS.getKey().equals(genType)) {
-            templates.add("templates/dao.java.vm");
-            templates.add("templates/daoImpl.java.vm");
-            templates.add("templates/IBatis_sql_map.xml.vm");
-            templates.add("templates/query.java.vm");
-            templates.add("templates/service.java.vm");
-            templates.add("templates/serviceImpl.java.vm");
+            templates.add("templates/ibatis/Entity.java.vm");
+            templates.add("templates/ibatis/dao.java.vm");
+            templates.add("templates/ibatis/daoImpl.java.vm");
+            templates.add("templates/ibatis/IBatis_sql_map.xml.vm");
+            templates.add("templates/ibatis/query.java.vm");
+            templates.add("templates/ibatis/service.java.vm");
+            templates.add("templates/ibatis/serviceImpl.java.vm");
         } else {
-            templates.add("templates/Mapper.xml.vm");
+            templates.add("templates/mybatis/Entity.java.vm");
+            templates.add("templates/mybatis/Mapper.xml.vm");
+            templates.add("templates/mybatis/Mapper.java.vm");
+            templates.add("templates/mybatis/service.java.vm");
+            templates.add("templates/mybatis/serviceImpl.java.vm");
+            templates.add("templates/mybatis/query.java.vm");
+            templates.add("templates/mybatis/controller.java.vm");
+
         }
         return templates;
     }
@@ -116,54 +124,106 @@ public class GenUtil {
                 + tableInfoConfig.getPackageName().replace(".", File.separator);
         String resourcesPath = "main" + File.separator + "resources";
         String className = tableInfoConfig.getClassName();
-        if (template.contains("Entity.java.vm")) {
+        if (template.contains("templates/mybatis/Entity.java.vm")) {
             return packagePath + File.separator + className
                     + ".java";
         }
-        if (template.contains("dao.java.vm")) {
+        if (template.contains("templates/mybatis/query.java.vm")) {
+            String path = "main" + File.separator + "java" + File.separator
+                    + tableInfoConfig.getQueryPackageName().replace(".", File.separator);
+            return path + File.separator + className
+                    + "Query.java";
+        }
+        if (template.contains("templates/mybatis/Mapper.java.vm")) {
+            String path = "main" + File.separator + "java" + File.separator
+                    + tableInfoConfig.getMapperPackageName().replace(".", File.separator);
+            return path + File.separator + className
+                    + "Mapper.java";
+        }
+        if (template.contains("templates/mybatis/service.java.vm")) {
+            String path = "main" + File.separator + "java" + File.separator
+                    + tableInfoConfig.getServicePackageName().replace(".", File.separator);
+            return path + File.separator + className
+                    + "Service.java";
+        }
+        if (template.contains("templates/mybatis/serviceImpl.java.vm")) {
+            String path = "main" + File.separator + "java" + File.separator
+                    + tableInfoConfig.getServicePackageName().replace(".", File.separator);
+            return path + File.separator + "impl" + File.separator + className
+                    + "ServiceImpl.java";
+        }
+        if (template.contains("templates/mybatis/controller.java.vm")) {
+            String path = "main" + File.separator + "java" + File.separator
+                    + tableInfoConfig.getControllerPackageName().replace(".", File.separator);
+            return path + File.separator + className
+                    + "Controller.java";
+        }
+        if (template.contains("templates/mybatis/Mapper.xml.vm")) {
+            return resourcesPath + File.separator+  "mapper" + File.separator+ className
+                    + "Mapper.xml";
+        }
+        // gen  ibatis
+        genIbatis(template, tableInfoConfig);
+
+        return null;
+    }
+
+    /**
+     * ibatis 生成
+     * @param template 模板文件名
+     * @param tableInfoConfig 配置
+     * @return 最后文件名
+     */
+    public static String genIbatis(String template,TableInfoConfig tableInfoConfig) {
+        String packagePath = "main" + File.separator + "java" + File.separator
+                + tableInfoConfig.getPackageName().replace(".", File.separator);
+        String className = tableInfoConfig.getClassName();
+        String resourcesPath = "main" + File.separator + "resources";
+
+        // ibatis
+
+        if (template.contains("templates/ibatis/Entity.java.vm")) {
+            return packagePath + File.separator + className
+                    + ".java";
+        }
+        if (template.contains("templates/ibatis/dao.java.vm")) {
             String path = "main" + File.separator + "java" + File.separator
                     + tableInfoConfig.getDaoPackageName().replace(".", File.separator);
             return path + File.separator+ className
                     + "Dao.java";
         }
 
-        if (template.contains("daoImpl.java.vm")) {
+        if (template.contains("templates/ibatis/daoImpl.java.vm")) {
             String path = "main" + File.separator + "java" + File.separator
                     + tableInfoConfig.getDaoPackageName().replace(".", File.separator);
             return path + File.separator+ "impl" + File.separator + className
                     + "DaoImpl.java";
         }
-        if (template.contains("service.java.vm")) {
+        if (template.contains("templates/ibatis/service.java.vm")) {
             String path = "main" + File.separator + "java" + File.separator
                     + tableInfoConfig.getServiceApiPackageName().replace(".", File.separator);
             return path + File.separator+ className
                     + "Service.java";
         }
-        if (template.contains("serviceImpl.java.vm")) {
+        if (template.contains("templates/ibatis/serviceImpl.java.vm")) {
             String path = "main" + File.separator + "java" + File.separator
                     + tableInfoConfig.getServicePackageName().replace(".", File.separator);
             return path + File.separator + "impl" + File.separator + className
                     + "ServiceImpl.java";
         }
-        if (template.contains("query.java.vm")) {
+        if (template.contains("templates/ibatis/query.java.vm")) {
             String path = "main" + File.separator + "java" + File.separator
                     + tableInfoConfig.getQueryPackageName().replace(".", File.separator);
             return path + File.separator + className
                     + "Query.java";
         }
 
-        if (template.contains("IBatis_sql_map.xml.vm")) {
+        if (template.contains("templates/ibatis/IBatis_sql_map.xml.vm")) {
             return resourcesPath + File.separator+ className
                     + "_sql_map.xml";
         }
-
-        if (template.contains("Mapper.xml.vm")) {
-            return resourcesPath + File.separator+ className
-                    + "Mapper.xml";
-        }
         return null;
     }
-
 
     /**
      * 构建表配置信息  包名等
@@ -181,6 +241,14 @@ public class GenUtil {
         }
         if(StringUtils.isEmpty(tableInfoConfig.getDaoPackageName())) {
             tableInfoConfig.setDaoPackageName(configuration.getString("daoPackageName", "com.yukong.panda.gen.mapper"));
+
+        }
+        if(StringUtils.isEmpty(tableInfoConfig.getControllerPackageName())) {
+            tableInfoConfig.setDaoPackageName(configuration.getString("controllerPackageName", "com.yukong.panda.gen.controller"));
+
+        }
+        if(StringUtils.isEmpty(tableInfoConfig.getMapperPackageName())) {
+            tableInfoConfig.setDaoPackageName(configuration.getString("mapperPackageName", "com.yukong.panda.gen.mapper"));
 
         }
 
