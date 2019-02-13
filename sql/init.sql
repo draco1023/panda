@@ -255,6 +255,41 @@ VALUES
 UNLOCK TABLES;
 
 
+create table if not exists sys_log
+(
+  id bigint(64) auto_increment comment '主键'
+    primary key,
+  type char default '1' null comment '日志类型',
+  status char default '0' not null comment '操作状态  0 成功 1 失败',
+  module_name varchar(255) default '' null comment '模块名',
+  action_name varchar(255) default '' null comment '操作名',
+  service_id varchar(32) null comment '服务ID',
+  remote_addr varchar(255) null comment '操作IP地址',
+  user_agent varchar(1000) null comment '用户代理',
+  request_uri varchar(255) null comment '请求URI',
+  method varchar(10) null comment '操作方式',
+  params text null comment '操作提交的数据',
+  time mediumtext null comment '执行时间',
+  exception text null comment '异常信息',
+  del_flag char default '0' null comment '删除标记',
+  create_by varchar(64) null comment '创建者',
+  create_time datetime default CURRENT_TIMESTAMP null comment '创建时间',
+  update_time datetime null on update CURRENT_TIMESTAMP comment '更新时间'
+)
+  comment '日志表' charset=utf8;
+
+create index sys_log_create_by
+  on sys_log (create_by);
+
+create index sys_log_create_date
+  on sys_log (create_time);
+
+create index sys_log_request_uri
+  on sys_log (request_uri);
+
+create index sys_log_type
+  on sys_log (type);
+
 
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
